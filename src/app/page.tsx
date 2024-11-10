@@ -223,6 +223,7 @@ export default function Home() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 3, duration: 1 }}
               >
+                <LottieParrot />
                 <ProfileImage />
               </motion.div>
 
@@ -232,10 +233,10 @@ export default function Home() {
                 transition={{ delay: 3.5, duration: 1, type: "spring" }}
                 className="absolute top-0 right-0 lg:top-[50%] lg:right-[45%] transform lg:translate-x-1/2 lg:-translate-y-1/2"
               >
-                <LottieParrot />
+               
               </motion.div>
             </motion.div>
-
+            
             <Timeline id="timeline"/>
             <Skills id="skills"/>
             <Projects id="projects"/>
