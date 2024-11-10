@@ -61,7 +61,7 @@ const ImageCanvas: React.FC<ImageCanvasProps> = ({ numFrames, width, height }) =
         <div className="relative">
             <canvas
                 ref={canvasRef}
-                className="object-contain w-[600px] h-auto" // Ensure fixed width and prevent overflow
+                className="object-contain w-[600px] h-auto" 
             />
         </div>
     );

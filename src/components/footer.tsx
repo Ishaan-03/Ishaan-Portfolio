@@ -59,8 +59,8 @@ const Footer: React.FC = () => {
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
         >
-          Thanks for visiting—let's stay connected!
-        </motion.div>
+  Thanks for visiting—let&apos;s stay connected!
+          </motion.div>
       </motion.div>
     </>
   );
