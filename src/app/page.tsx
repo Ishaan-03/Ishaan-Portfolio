@@ -185,8 +185,7 @@ export default function Home() {
                   <span className="block">Hello!</span>
                   <span className="block mt-2 text-lg sm:text-xl">
                   I&apos;m thrilled to introduce myself as
-                  </span>
-
+                                    </span>
                 </motion.pre>
 
                 <motion.div
