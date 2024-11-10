@@ -11,12 +11,7 @@ const roboto = Roboto({ weight: ['400', '700'], subsets: ['latin'] });
 const Projects: React.FC<{ id?: string }> = ({ id }) => {
   const parentDiv = useRef<HTMLDivElement>(null);
 
-  const { scrollYProgress } = useScroll({
-    target: parentDiv,
-    offset: ["start start", "end start"],
-  });
-
-  const x = useTransform(scrollYProgress, [0, 0.9], ["0%", "-50%"]);
+  
 
   return (
 <div ref={parentDiv} className={`text-3xl font-bold text-slate-300 ${playfair.className}`} id={id}>   
@@ -25,7 +20,7 @@ const Projects: React.FC<{ id?: string }> = ({ id }) => {
           <div className="text-3xl font-bold text-slate-300">Projects</div>
           <div className="border-gray-700 border-t-[1px] w-72 mt-5"></div>
         </div>
-        <motion.div style={{ x }} className='flex flex-wrap justify-between'>
+        <motion.div  className='flex flex-wrap justify-between'>
           {projects.map((data) => (
             <Card key={data.name} props={data} />
           ))}
