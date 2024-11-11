@@ -5,19 +5,29 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import * as THREE from 'three'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { MeshDistortMaterial, Environment } from '@react-three/drei'
+import Link from "next/link"
+import { Link as ScrollLink } from "react-scroll"
+import anime from 'animejs/lib/anime.es.js'
+
+// Components
 import GreetingTicker from "@/components/greetingTicker"
 import Projects from "@/components/Projects"
 import Skills from "@/components/skills"
 import Timeline from "@/components/timeline"
-import ProfileImage from "../components/myprofile"
-import { HomeIcon, Monitor, User, FileTextIcon, Contact,MailIcon, GithubIcon, TwitterIcon, LinkedinIcon } from "lucide-react"
-import Link from "next/link"
-import { Link as ScrollLink } from "react-scroll"
+import ProfileImage from "@/components/myprofile"
 import { FloatingNavbar } from "@/components/ui/navbar"
-import anime from 'animejs/lib/anime.es.js'
-import LottieParrot from "../media/parrot"
+import LottieParrot from "@/media/parrot"
 import ContactPage from "@/components/contact"
 import Footer from "@/components/footer"
+
+// Icons
+import { HomeIcon, Monitor, User, FileTextIcon, Contact } from "lucide-react"
+
+interface NavItemProps {
+  to: string;
+  icon: React.ComponentType<any>;
+  text: string;
+}
 
 const AnimatedBackground = () => {
   const meshRef = useRef<THREE.Mesh>(null)
@@ -42,6 +52,25 @@ const AnimatedBackground = () => {
     </mesh>
   )
 }
+
+const NavItem = ({ to, icon: Icon, text }: NavItemProps) => (
+  <ScrollLink
+    activeClass="active"
+    to={to}
+    spy={true}
+    smooth={true}
+    offset={0}
+    duration={500}
+  >
+    <motion.div
+      className="flex items-center gap-2 hover:text-green-400 cursor-pointer transition ease-in-out duration-500 rounded-full bg-black p-2 sm:p-4"
+      whileHover={{ scale: 1.1, boxShadow: "0 0 15px rgba(34, 255, 0, 0.8)" }}
+    >
+      <Icon size={24} />
+      <span className="text-sm sm:text-lg font-semibold hidden sm:inline">{text}</span>
+    </motion.div>
+  </ScrollLink>
+)
 
 export default function Home() {
   const [greetStatus, setGreetStatus] = useState<boolean>(false)
@@ -95,78 +124,20 @@ export default function Home() {
             transition={{ delay: 0.5, duration: 1 }}
             className="relative z-10 px-4 sm:px-6 lg:px-24"
           >
-            <nav className="relative flex justify-between border hover:border-green-400 rounded-3xl py-3 px-4 sm:px-9 sm:w-3/4 lg:w-3/4 font-bold transition ease-in-out duration-1000 sticky top-4 backdrop-blur-sm mx-auto z-20">
-              <Link href="/">
+            <nav className="relative flex justify-between items-center border hover:border-green-400 rounded-3xl py-2 px-2 sm:px-4 w-full sm:w-3/4 lg:w-3/4 font-bold transition ease-in-out duration-1000 sticky top-4 backdrop-blur-sm mx-auto z-20">
+              <NavItem to="/" icon={HomeIcon} text="Home" />
+              <NavItem to="timeline" icon={User} text="About" />
+              <NavItem to="projects" icon={Monitor} text="Projects" />
+              <NavItem to="contact" icon={Contact} text="Contact" />
+              <Link  href="https://drive.google.com/file/d/1L4Ekf3ghW_OvksLhbZFUtpSgI4CjynUR/view?usp=drivesdk"  target="_blank">
                 <motion.div
-                  className="flex items-center gap-2 hover:text-green-400 cursor-pointer transition ease-in-out duration-500 rounded-full bg-black p-4"
-                  whileHover={{ scale: 1.3, boxShadow: "0 0 15px rgba(34, 255, 0, 0.8)" }}
+                  className="flex items-center gap-2 hover:text-green-400 cursor-pointer transition ease-in-out duration-500 rounded-full bg-black p-2 sm:p-4"
+                  whileHover={{ scale: 1.1, boxShadow: "0 0 15px rgba(34, 255, 0, 0.8)" }}
                 >
-                  <HomeIcon size={30} />
-                  <span className="text-lg font-semibold">Home</span>
+                  <FileTextIcon size={24} />
+                  <span className="text-sm sm:text-lg font-semibold hidden sm:inline">Resume</span>
                 </motion.div>
               </Link>
-
-              <ScrollLink
-                activeClass="active"
-                to="timeline"
-                spy={true}
-                smooth={true}
-                offset={0}
-                duration={500}
-              >
-                <motion.div
-                  className="flex items-center gap-2 hover:text-green-400 cursor-pointer transition ease-in-out duration-500 rounded-full bg-black p-4"
-                  whileHover={{ scale: 1.3, boxShadow: "0 0 15px rgba(34, 255, 0, 0.8)" }}
-                >
-                  <User size={30} />
-                  <span className="text-lg font-semibold">About</span>
-                </motion.div>
-              </ScrollLink>
-
-              <ScrollLink
-                activeClass="active"
-                to="projects"
-                spy={true}
-                smooth={true}
-                offset={0}
-                duration={500}
-              >
-                <motion.div
-                  className="flex items-center gap-2 hover:text-green-400 cursor-pointer transition ease-in-out duration-500 rounded-full bg-black p-4"
-                  whileHover={{ scale: 1.3, boxShadow: "0 0 15px rgba(34, 255, 0, 0.8)" }}
-                >
-                  <Monitor size={30} />
-                  <span className="text-lg font-semibold">Projects</span>
-                </motion.div>
-              </ScrollLink>
-              <ScrollLink
-                activeClass="active"
-                to="contact"
-                spy={true}
-                smooth={true}
-                offset={0}
-                duration={500}
-              >
-                <motion.div
-                  className="flex items-center gap-2 hover:text-green-400 cursor-pointer transition ease-in-out duration-500 rounded-full bg-black p-4"
-                  whileHover={{ scale: 1.3, boxShadow: "0 0 15px rgba(34, 255, 0, 0.8)" }}
-                >
-                  <Contact size={30} />
-                  <span className="text-lg font-semibold">contact</span>
-                </motion.div>
-              </ScrollLink>
-
-              <div className="relative flex items-center">
-                <Link href="https://drive.google.com/file/d/1cudqRi4ygJ7LUb7dklPuElJmbPmHrcso/view?usp=drivesdk">
-                  <motion.div
-                    className="flex items-center gap-2 hover:text-green-400 cursor-pointer transition ease-in-out duration-500 rounded-full bg-black p-4"
-                    whileHover={{ scale: 1.3, boxShadow: "0 0 15px rgba(34, 255, 0, 0.8)" }}
-                  >
-                    <FileTextIcon size={30} />
-                    <span className="text-lg font-semibold">Resume</span>
-                  </motion.div>
-                </Link>
-              </div>
             </nav>
 
             <motion.div
@@ -180,37 +151,47 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.5, duration: 0.8 }}
-                  className="text-green-500 font-bold mb-4 lg:text-5xl sm:text-2xl"
+                  className="text-green-500 font-bold mb-4 text-xl sm:text-2xl lg:text-5xl"
                 >
                   <span className="block">Hello!</span>
-                  <span className="block mt-2 text-lg sm:text-xl">
-                  I&apos;m thrilled to introduce myself as
-                                    </span>
+                  <span className="block mt-2 text-base sm:text-lg">
+                    I&apos;m thrilled to introduce myself as
+                  </span>
                 </motion.pre>
 
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 2, duration: 0.8 }}
-                  className="text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-none tracking-tight text-blue-400"
+                  className="text-3xl sm:text-5xl lg:text-7xl font-extrabold leading-none tracking-tight text-blue-400"
                 >
                   Ishaan.
                 </motion.div>
 
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 2.3, duration: 0.8 }}
-                  className="text-3xl sm:text-3xl lg:text-6xl font-extrabold leading-none tracking-tight text-blue-400 mt-2"
-                >
-                  Full Stack Web Developer.
-                </motion.div>
+                <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-start">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 2.3, duration: 0.8 }}
+                    className="text-2xl sm:text-4xl lg:text-6xl font-extrabold leading-none tracking-tight text-blue-400 mt-2"
+                  >
+                    Full Stack Web Developer
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 2.6, duration: 0.8 }}
+                    className="w-24 h-24 lg:w-32 lg:h-32 ml-2"
+                  >
+                    
+                  </motion.div>
+                </div>
                 
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 2.6, duration: 0.8 }}
-                  className="mt-8 text-slate-400 lg:w-[calc((100svw-48px)/2)] pr-0 lg:pr-20 font-medium sm:w-10/12 text-center lg:text-left mx-auto"
+                  transition={{ delay: 2.9, duration: 0.8 }}
+                  className="mt-8 text-slate-400 w-full lg:w-[calc((100svw-48px)/2)] pr-0 lg:pr-20 font-medium text-sm sm:text-base text-center lg:text-left mx-auto"
                 >
                   I&apos;m currently
                   <span className="text-green-500">{' '}pursuing a degree{' '}</span>
@@ -222,18 +203,11 @@ export default function Home() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 3, duration: 1 }}
-              >
-                <LottieParrot />
-                <ProfileImage />
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                transition={{ delay: 3.5, duration: 1, type: "spring" }}
-                className="absolute top-0 right-0 lg:top-[50%] lg:right-[45%] transform lg:translate-x-1/2 lg:-translate-y-1/2"
+                className="w-full sm:w-3/4 lg:w-1/2"
               >
                
+                <ProfileImage />
+                 <LottieParrot />
               </motion.div>
             </motion.div>
             

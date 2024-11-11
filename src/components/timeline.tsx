@@ -62,7 +62,7 @@ const Timeline: React.FC<TimelineProps> = ({ id }) => {
                 <LinkedinIcon size={24} className="text-slate-400 hover:text-green-400" />
               </motion.div>
             </Link>
-            <Link href="https://drive.google.com/file/d/1cudqRi4ygJ7LUb7dklPuElJmbPmHrcso/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">
+            <Link href="https://drive.google.com/file/d/1L4Ekf3ghW_OvksLhbZFUtpSgI4CjynUR/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">
               <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                 <FileTextIcon size={24} className="text-slate-400 hover:text-green-400" />
               </motion.div>
