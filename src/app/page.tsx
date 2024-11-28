@@ -129,7 +129,7 @@ export default function Home() {
               <NavItem to="timeline" icon={User} text="About" />
               <NavItem to="projects" icon={Monitor} text="Projects" />
               <NavItem to="contact" icon={Contact} text="Contact" />
-              <Link  href="https://drive.google.com/file/d/1L4Ekf3ghW_OvksLhbZFUtpSgI4CjynUR/view?usp=drivesdk"  target="_blank">
+              <Link  href="https://drive.google.com/file/d/1chzWkiNjGvPDIPObVulJnyojAqwpytxK/view?usp=drivesdk"  target="_blank">
                 <motion.div
                   className="flex items-center gap-2 hover:text-green-400 cursor-pointer transition ease-in-out duration-500 rounded-full bg-black p-2 sm:p-4"
                   whileHover={{ scale: 1.1, boxShadow: "0 0 15px rgba(34, 255, 0, 0.8)" }}
